@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Media Control Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    margin: 0;
+    background: #0f1115;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #eaeaf0;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 16px;
+    padding: 20px;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+
+  .tile {
+    background: #1a1d24;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    user-select: none;
+  }
+
+  .icon {
+    font-size: 46px;
+    margin-bottom: 10px;
+  }
+
+  .label {
+    color: #b8bcc8;
+  }
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="tile"><div class="icon">🎬</div><div class="label">Netflix</div></div>
+    <div class="tile"><div class="icon">🎥</div><div class="label">Max</div></div>
+    <div class="tile"><div class="icon">📦</div><div class="label">Prime Video</div></div>
+    <div class="tile"><div class="icon">📺</div><div class="label">Hulu</div></div>
+
+    <div class="tile"><div class="icon">🦚</div><div class="label">Peacock</div></div>
+    <div class="tile"><div class="icon">📡</div><div class="label">Xfinity</div></div>
+    <div class="tile"><div class="icon">▶️</div><div class="label">YouTube</div></div>
+    <div class="tile"><div class="icon">🎵</div><div class="label">Music</div></div>
+  </div>
+</body>
+</html>
