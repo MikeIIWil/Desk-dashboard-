@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Desk Dashboard</title>
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#121924;
+      --text:#e8edf6;
+      --muted:#9aa6b6;
+      --stroke:rgba(255,255,255,.10);
+      --shadow: 0 10px 26px rgba(0,0,0,.45);
+      --r:18px;
+      --gap: clamp(10px, 2vw, 16px);
+      --pad: clamp(12px, 2.6vw, 20px);
+
+      /* Fire 7/8 tuned sizes */
+      --tileH: clamp(108px, 18vh, 150px);
+      --icon: clamp(30px, 6vw, 44px);
+      --label: clamp(14px, 2.7vw, 18px);
+    }
+
+    *{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background: radial-gradient(1100px 650px at 30% 0%, #152138 0%, var(--bg) 48%, #070a0f 100%);
+      color:var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow:hidden;
+    }
+
+    .wrap{
+      height:100%;
+      padding: calc(env(safe-area-inset-top) + var(--pad)) var(--pad) calc(env(safe-area-inset-bottom) + var(--pad)) var(--pad);
+      display:flex;
+      flex-direction:column;
+      gap: var(--gap);
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+    }
+
+    .left{
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+      min-width: 0;
+    }
+
+    .time{
+      font-size: clamp(30px, 5.2vw, 44px);
+      font-weight: 750;
+      letter-spacing: .4px;
+      white-space: nowrap;
+    }
+
+    .date{
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+
+    .right{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .pill{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      user-select:none;
+      white-space: nowrap;
+    }
+    .pill:active{ transform: scale(.98); }
+
+    .grid{
+      flex:1;
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--gap);
+    }
+
+    /* If it ever runs in portrait/small width, automatically go 2 columns */
+    @media (max-width: 640px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+
+    a.tile{
+      height: var(--tileH);
+      border-radius: var(--r);
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      text-decoration:none;
+      color: var(--text);
+      user-select:none;
+      position:relative;
+      overflow:hidden;
+    }
+
+    a.tile::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(420px 220px at 20% 0%, rgba(255,255,255,.10), transparent 60%);
+      opacity:.8;
+      pointer-events:none;
+    }
+
+    a.tile:active{ transform: scale(.985); }
+
+    .icon{
+      width: calc(var(--icon) + 14px);
+      height: calc(var(--icon) + 14px);
+      border-radius: 16px;
+      display:grid;
+      place-items:center;
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.10);
+      font-weight: 800;
+      font-size: calc(var(--icon) - 6px);
+      opacity: .95;
+    }
+
+    .label{
+      font-size: var(--label);
+      letter-spacing:.2px;
+      text-align:center;
+      padding: 0 10px;
+    }
+
+    .sub{
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: -6px;
+      text-align:center;
+      padding: 0 10px;
+    }
+
+    .hint{
+      font-size:12px;
+      color:var(--muted);
+      text-align:center;
+      opacity:.9;
+      padding-bottom: 2px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="left">
+        <div class="time" id="time">--:--</div>
+        <div class="date" id="date">---</div>
+      </div>
+      <div class="right">
+        <a class="pill" href="tv.html">🎛️ TV</a>
+        <a class="pill" href="dashboard.html">↻ Refresh</a>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- Top row -->
+      <a class="tile" href="https://www.netflix.com" target="_blank" rel="noopener">
+        <div class="icon">N</div>
+        <div class="label">Netflix</div>
+        <div class="sub">Launch</div>
+      </a>
+
+      <a class="tile" href="https://play.max.com" target="_blank" rel="noopener">
+        <div class="icon">M</div>
+        <div class="label">Max</div>
+        <div class="sub">Launch</div>
+      </a>
+
+      <a class="tile" href="https://www.amazon.com/gp/video/storefront" target="_blank" rel="noopener">
+        <div class="icon">P</div>
+        <div class="label">Prime Video</div>
+        <div class="sub">Launch</div>
+      </a>
+
+      <a class="tile" href="https://www.hulu.com" target="_blank" rel="noopener">
+        <div class="icon">H</div>
+        <div class="label">Hulu</div>
+        <div class="sub">Launch</div>
+      </a>
+
+      <!-- Bottom row -->
+      <a class="tile" href="https://www.peacocktv.com" target="_blank" rel="noopener">
+        <div class="icon">🦚</div>
+        <div class="label">Peacock</div>
+        <div class="sub">Launch</div>
+      </a>
+
+      <a class="tile" href="https://www.xfinity.com/stream" target="_blank" rel="noopener">
+        <div class="icon">X</div>
+        <div class="label">Xfinity</div>
+        <div class="sub">Stream</div>
+      </a>
+
+      <a class="tile" href="https://m.youtube.com" target="_blank" rel="noopener">
+        <div class="icon">▶</div>
+        <div class="label">YouTube</div>
+        <div class="sub">Launch</div>
+      </a>
+
+      <!-- REMOTE: You will replace the link below with your Fire TV Remote app intent once we confirm package name -->
+      <a class="tile" href="#" onclick="openFireTvRemote();return false;">
+        <div class="icon">⌁</div>
+        <div class="label">REMOTE (Portrait)</div>
+        <div class="sub">Fire TV app</div>
+      </a>
+    </div>
+
+    <div class="hint">
+      Remote opens in portrait by design — press Back to return to the dashboard.
+    </div>
+  </div>
+
+  <script>
+    // Clock/date
+    function updateTime(){
+      const now = new Date();
+      document.getElementById("time").textContent =
+        now.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+      document.getElementById("date").textContent =
+        now.toLocaleDateString([], {weekday:"long", month:"long", day:"numeric"});
+    }
+    updateTime();
+    setInterval(updateTime, 15000);
+
+    // Remote launcher: replace package below once confirmed.
+    // For now, it opens an Amazon help page so the tile isn't dead.
+    function openFireTvRemote(){
+      // Placeholder fallback (always works)
+      window.location.href = "https://www.amazon.com/gp/firetv/remote";
+    }
+  </script>
+</body>
+</html>
