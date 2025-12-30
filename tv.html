@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>TV Controls</title>
+
+  <style>
+    :root{
+      --bg:#070a10;
+      --stroke:rgba(255,255,255,.10);
+      --text:#eef3fb;
+      --muted:#a7b2c2;
+      --r:22px;
+      --pad: clamp(14px, 3vw, 22px);
+      --gap: clamp(12px, 2.6vw, 18px);
+      --big: clamp(20px, 4.2vw, 30px);
+      --shadow: 0 10px 26px rgba(0,0,0,.45);
+    }
+    *{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background: radial-gradient(1100px 650px at 40% 0%, #172641 0%, var(--bg) 48%, #060810 100%);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      overflow:hidden;
+    }
+    .wrap{
+      height:100%;
+      padding: calc(env(safe-area-inset-top) + var(--pad)) var(--pad) calc(env(safe-area-inset-bottom) + var(--pad)) var(--pad);
+      display:flex;
+      flex-direction:column;
+      gap: var(--gap);
+    }
+    .bar{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding: 12px 14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+    }
+    .bar b{ font-size: clamp(16px, 3vw, 20px); }
+    .bar a{
+      color:var(--text);
+      text-decoration:none;
+      border:1px solid var(--stroke);
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+    }
+    .grid{
+      flex:1;
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--gap);
+    }
+    .btn{
+      border-radius: var(--r);
+      border:1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 850;
+      font-size: var(--big);
+      letter-spacing:.3px;
+      user-select:none;
+      text-decoration:none;
+      color:var(--text);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .btn:active{ transform: scale(.985); }
+    .row{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--gap);
+    }
+    .chip{
+      border-radius: 18px;
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,.25);
+      padding: 14px 12px;
+      text-align:center;
+      text-decoration:none;
+      color:var(--text);
+      font-weight:800;
+      box-shadow: var(--shadow);
+      user-select:none;
+    }
+    .chip span{ display:block; font-weight:500; color:var(--muted); font-size:12px; margin-top:4px; }
+    .chip:active{ transform: scale(.985); }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="bar">
+      <b>TV Controls</b>
+      <a href="dashboard.html">⬅ Desk</a>
+    </div>
+
+    <div class="grid">
+      <a class="btn" href="https://www.netflix.com" target="_blank" rel="noopener">Netflix</a>
+      <a class="btn" href="https://play.max.com" target="_blank" rel="noopener">Max</a>
+      <a class="btn" href="https://www.amazon.com/gp/video/storefront" target="_blank" rel="noopener">Prime</a>
+      <a class="btn" href="https://www.hulu.com" target="_blank" rel="noopener">Hulu</a>
+    </div>
+
+    <div class="row">
+      <a class="chip" href="https://www.peacocktv.com" target="_blank" rel="noopener">Peacock <span>Launch</span></a>
+      <a class="chip" href="https://www.xfinity.com/stream" target="_blank" rel="noopener">Xfinity <span>Stream</span></a>
+      <a class="chip" href="https://m.youtube.com" target="_blank" rel="noopener">YouTube <span>Launch</span></a>
+      <a class="chip" href="#" onclick="window.location.href='https://www.amazon.com/gp/firetv/remote';return false;">Remote <span>Fire TV app</span></a>
+    </div>
+  </div>
+</body>
+</html>
