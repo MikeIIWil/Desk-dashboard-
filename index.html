@@ -1,11 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- GitHub Pages will load index.html by default -->
-  <meta http-equiv="refresh" content="0; url=dashboard.html" />
-  <title>Loading…</title>
+<meta charset="UTF-8">
+<title>Desk Media Control</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+html, body {
+  margin: 0;
+  height: 100%;
+  background: #0f1115;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #eaeaf0;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.tile {
+  background: #1a1d24;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  letter-spacing: .4px;
+}
+
+.tile span {
+  font-size: 52px;
+  margin-bottom: 12px;
+}
+
+.small {
+  font-size: 14px;
+  color: #9aa0b5;
+}
+</style>
 </head>
-<body></body>
+
+<body>
+<div class="container">
+
+  <div class="tile">
+    <span>📺</span>
+    Fire TV
+    <div class="small">Use Remote</div>
+  </div>
+
+  <div class="tile">
+    <span>🎬</span>
+    Netflix
+    <div class="small">TV App</div>
+  </div>
+
+  <div class="tile">
+    <span>📦</span>
+    Prime Video
+    <div class="small">TV App</div>
+  </div>
+
+  <div class="tile">
+    <span>📡</span>
+    Hulu
+    <div class="small">TV App</div>
+  </div>
+
+  <div class="tile">
+    <span>🦚</span>
+    Peacock
+    <div class="small">TV App</div>
+  </div>
+
+  <div class="tile">
+    <span>📺</span>
+    Xfinity
+    <div class="small">TV App</div>
+  </div>
+
+  <div class="tile">
+    <span>▶️</span>
+    YouTube
+    <div class="small">TV App</div>
+  </div>
+
+  <div class="tile">
+    <span>🎵</span>
+    Music
+    <div class="small">Spotify / Pandora</div>
+  </div>
+
+</div>
+</body>
 </html>
